@@ -16,6 +16,11 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+// 0. Root Route
+app.get('/', (req, res) => {
+  res.send('Candidate Shortlisting API is running!');
+});
+
 // 1. Add Candidate
 app.post('/api/candidates', async (req, res) => {
   try {
