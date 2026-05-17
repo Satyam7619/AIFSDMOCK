@@ -35,7 +35,8 @@ const Shortlist = () => {
     setAiSuggestions(null);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/match', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await axios.post(`${API_URL}/api/match`, {
         requiredSkills,
         minExperience: Number(jobReq.minExperience) || 0
       });
@@ -56,7 +57,8 @@ const Shortlist = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/ai/shortlist', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await axios.post(`${API_URL}/api/ai/shortlist`, {
         requiredSkills,
         minExperience: Number(jobReq.minExperience) || 0,
         candidates: results.slice(0, 10) // Send top 10 to AI to save tokens
